@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FreelancerAlerts.MainPage"
+             xmlns:models="clr-namespace:FreelancerAlerts"
+             Title="Projects">
+    <VerticalStackLayout>
+        <ScrollView>
+            <VerticalStackLayout
+            Padding="30,0"
+            Spacing="0">
+                <HorizontalStackLayout Margin="0,0,0,10">
+                    <Label Text="Project ID"  WidthRequest="100" FontAttributes="Bold"/>
+                    <Label Text="Description" WidthRequest="600" FontAttributes="Bold"/>
+                    <Label Text="Currency" WidthRequest="100" FontAttributes="Bold"/>
+                    <Label Text="Budget" WidthRequest="70" HorizontalTextAlignment="End" FontAttributes="Bold"/>
+                    <Label Text="Bids" WidthRequest="50" HorizontalTextAlignment="End" FontAttributes="Bold"/>
+                    <Label Text="Avg" WidthRequest="100" HorizontalTextAlignment="End" FontAttributes="Bold"/>
+                    <!--Text="{Binding BidStats.BidAvg,StringFormat= 'Bid Avg is {0:F2}'}"-->
+                </HorizontalStackLayout>
+                <CollectionView ItemsSource="{Binding Projects}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Project">
+                            <HorizontalStackLayout HeightRequest="40" >
+                                <Entry Text="{Binding Id}" WidthRequest="100"/>
+                                <Label Text="{Binding PreviewDescription}" WidthRequest="600" ToolTipProperties.Text="{Binding Description}"/>
+                                <Label Text="{Binding Currency.Code,StringFormat= '{0}'}" WidthRequest="100" VerticalOptions="Center"/>
+                                <Label Text="{Binding Budget.BudgetCustom}" WidthRequest="70" HorizontalTextAlignment="End" VerticalOptions="Center" />
+                                <Label Text="{Binding BidStats.BidCount}" WidthRequest="50" HorizontalTextAlignment="End" VerticalOptions="Center"/>
+                                <Label Text="{Binding BidStats.BidAvg,StringFormat= '{0:F2}'}" WidthRequest="100" HorizontalTextAlignment="End" VerticalOptions="Center"/>
+                                <!--Text="{Binding BidStats.BidAvg,StringFormat= 'Bid Avg is {0:F2}'}"-->
+                            </HorizontalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </VerticalStackLayout>
+</ContentPage>
